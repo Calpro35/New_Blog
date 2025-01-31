@@ -1,0 +1,82 @@
+<%- include('../../partials/header.ejs'); %>
+
+<body>
+    <%- include('../../partials/navbar.ejs'); %>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+           
+            <div class="card mt-3" >
+                <div class="card-header">
+                    <h3 class="mb-3 pt-2">Editar artigo</h3>
+                </div>
+ 
+                <div class="card-body">
+                    <form method="post" action="/articles/update" class="">
+                        <form method="post" action="/articles/update" class="">
+                            <input type="hidden" value="<%= article.id %>" name="id">
+                            <input type="text" class="form-control mb-3" name="title" value="<%= article.title%>">
+                            <textarea name="body" id="article" class="form-control mt-3"> <%= article.body %>
+                            </textarea>
+                            
+                        <label class="mt-3 ms-2 mb-2" for="">Categoria</label>
+                        <select class="form-control" name="category"  >
+                                
+                                <% categories.forEach(category => { %>
+
+                                    <% if(category.id == article.categoryId){%>
+                                        <option value="<%= category.id %> " selected><%= category.title %></option>
+                                    <% }else {%> 
+                                        <option value="<%= category.id %> "><%= category.title %></option>
+                                    <% }%>    
+                                      
+                                   
+                                
+                                <% }); %>
+
+                        </select>
+                       
+                        <button class="btn btn-success pt-0  mt-3">atualizar</button>  
+                    </form>
+               </div>
+            </div>
+   
+          </div>
+       </div>
+ 
+
+  
+</div>
+</body>
+
+
+<%- include ('../../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    language: 'pt-BR',
+    selector: "#article",
+    a11y_advanced_options: true,
+    plugins: [
+                    'advlist',
+                    'autolink',
+                    'link',
+                    'image',
+                    'lists',
+                    'preview',
+                    'searchreplace',
+                    'wordcount',
+                    'fullscreen',
+                    'insertdatetime',
+                    'media',
+                    'save',
+                    'table',
+                    'emoticons',
+                ]
+  })
+</script>
+
+
+

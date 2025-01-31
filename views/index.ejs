@@ -1,0 +1,53 @@
+<%- include ('./partials/header.ejs') %>
+<%- include ('./partials/homenavbar.ejs') %>
+<body>
+    
+   <div class="container">
+  <div class="p-5 mb-2 bg-light rounded-3 mt-3">
+      <div class="container-fluid py-3">
+         <h1 class="display-6 fw-bold">Welcome to blog</h1>
+         <p class="fs-5">
+           Crie artigos personalizados com categorias que mais te impressionam nao fique de fora dos assuntos
+           mais falados na atualidades poste todo seu conhecimento e interaja com a comunidade.
+         </p>
+         <button class="btn btn-primary btn-lg mt-3 pt-0" type="button">
+            Ler mais
+         </button>
+      </div>
+   </div>
+  
+
+      <div class="row justify-content-center">   
+    <% articles.forEach(article => { %>
+     
+        <div class="card w-75 mt-3 ">
+            <div class="card-header">
+               <h4><%= article.title%></h4>
+            </div>
+             
+            <div class="card-body">
+                <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+            </div>
+
+        </div>
+         <br> 
+      <% }) %>
+
+
+   </div>
+
+
+  <div class="rows mt-3 mb-3">
+    <div class="col col-12">
+      <a style="float: right;" href="/articles/page/2" >Next >></a>
+    </div>
+  </div>
+
+
+   </div>
+
+
+</body>
+
+<%- include ('./partials/footer.ejs') %>
+

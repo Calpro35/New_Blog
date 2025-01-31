@@ -1,0 +1,68 @@
+<%- include('../../partials/header.ejs'); %>
+
+<body>
+    <%- include('../../partials/navbar.ejs'); %>
+
+    <div class="container ">
+        
+        <h2 class="mt-5">Categorias</h2>
+        <hr>
+          
+          <a class="btn btn-success mt-3" href="/admin/categories/new">Criar nova categoria</a>
+        
+        <div class="row justify-content-center">
+       
+          <table class="w-75 table table-striped table-bordered table-hover mt-5">
+            <thead>
+              <tr>
+                <th class="text-center">ID</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th class="text-center">Ações</th>
+              </tr>
+            </thead>
+          
+            <tbody>
+              <% categories.forEach(Category => { %>
+                <tr>
+                  <th class="text-center"><%= Category.id %></th>
+                  <th><%= Category.title %></th>
+                  <th><%= Category.slug %></th>
+                  <th class="text-center">
+                  
+                    <a href="/admin/categories/edit/<%= Category.id %>"  class="btn btn-warning">Editar</a>
+                   
+                    <form method="post" action="/categories/delete" class="d-inline-block" onsubmit="ConfirmarDelecao(event, this)">
+                      <input type="hidden" name="id" value="<%= Category.id %>">
+                      <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                 
+                  </th>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+       
+    </div> 
+       
+     </div>
+
+</body>
+
+
+<%- include ('../../partials/footer.ejs') %>
+
+<script>
+
+//funcao para abrir caixa de dialogo para confirmação de exlusao 
+function ConfirmarDelecao(event, form){
+       event.preventDefault();
+       var decision = confirm("Voce quer excluir esta categoria?");
+       if(decision){
+          form.submit();
+       }else{
+          console.log("nao quero deletar")
+       }
+}
+  
+</script>
